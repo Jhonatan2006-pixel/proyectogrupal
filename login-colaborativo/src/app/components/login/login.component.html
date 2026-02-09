@@ -1,32 +1,51 @@
-<div class="login-container">
-<h2>Iniciar Sesión</h2>
+<div class="login-wrapper">
  
-  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+  <mat-card class="login-card">
  
-    <mat-form-field appearance="outline" class="full-width">
+    <mat-card-header>
+<mat-card-title>Iniciar Sesión</mat-card-title>
+<mat-card-subtitle>Acceso al sistema</mat-card-subtitle>
+</mat-card-header>
+ 
+    <mat-card-content>
+ 
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+ 
+        <!-- Usuario -->
+<mat-form-field appearance="outline" class="full-width">
 <mat-label>Usuario</mat-label>
-<input matInput formControlName="username" />
+<mat-icon matPrefix>person</mat-icon>
+<input matInput formControlName="username">
 <mat-error *ngIf="loginForm.get('username')?.invalid">
-        El usuario es obligatorio
+            Usuario obligatorio
 </mat-error>
 </mat-form-field>
  
-    <mat-form-field appearance="outline" class="full-width">
+        <!-- Contraseña -->
+<mat-form-field appearance="outline" class="full-width">
 <mat-label>Contraseña</mat-label>
-<input matInput type="password" formControlName="password" />
+<mat-icon matPrefix>lock</mat-icon>
+<input matInput type="password" formControlName="password">
 <mat-error *ngIf="loginForm.get('password')?.invalid">
-        La contraseña es obligatoria
+            Contraseña obligatoria
 </mat-error>
 </mat-form-field>
  
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      class="full-width"
-      [disabled]="loginForm.invalid">
-      Iniciar sesión
+        <!-- Botón -->
+<button
+          mat-flat-button
+          color="primary"
+          class="full-width login-btn"
+          type="submit"
+          [disabled]="loginForm.invalid">
+<mat-icon>login</mat-icon>
+          Iniciar sesión
 </button>
  
-  </form>
+      </form>
+ 
+    </mat-card-content>
+ 
+  </mat-card>
+ 
 </div>
