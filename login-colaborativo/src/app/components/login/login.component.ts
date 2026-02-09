@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Login } from 'src/app/interfaces/loginDto';
+import { Login } from '../../interfaces/loginDto';
  
  
 @Component({
