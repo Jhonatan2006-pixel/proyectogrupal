@@ -1,30 +1,34 @@
 <div class="login-container">
+ 
   <h2>Iniciar Sesión</h2>
+ 
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+ 
+    <mat-form-field appearance="outline" class="full-width">
+<mat-label>Usuario</mat-label>
+<input matInput formControlName="username">
+<mat-error *ngIf="loginForm.get('username')?.invalid">
 
-  <form (ngSubmit)="login()" #loginForm="ngForm">
-    
-    <div class="form-group">
-      <label>Usuario</label>
-      <input
-        type="text"
-        name="username"
-        [(ngModel)]="username"
-        required
-        placeholder="Ingrese usuario"
-      />
-    </div>
+        Usuario obligatorio
+</mat-error>
+</mat-form-field>
+ 
+    <mat-form-field appearance="outline" class="full-width">
+<mat-label>Contraseña</mat-label>
+<input matInput type="password" formControlName="password">
+<mat-error *ngIf="loginForm.get('password')?.invalid">
 
-    <div class="form-group">
-      <label>Contraseña</label>
-      <input
-        type="password"
-        name="password"
-        [(ngModel)]="password"
-        required
-        placeholder="Ingrese contraseña"
-      />
-    </div>
+        Contraseña obligatoria
+</mat-error>
+</mat-form-field>
+ 
+    <button mat-raised-button color="primary" class="full-width" type="submit">
 
-    <button type="submit">Login</button>
+      Ingresar
+</button>
+ 
   </form>
+ 
 </div>
+
+ 

@@ -1,24 +1,39 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 import { Login } from '../../interfaces/loginDto';
- 
  
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+  ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
  
-  username: string = '';
-  password: string = '';
+  loginForm!: FormGroup;
  
-  login() {
-    console.log('Usuario:', this.username);
-    console.log('Password:', this.password);
-    const objectRequest: Login = {
-      username: this.username,
-      password: this.password
-    };
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
  
+  login(){
+    if(this.loginForm.invalid) return;
+ 
+    const objectRequest: Login = this.loginForm.value;
+    console.log('Login:', objectRequest);
   }
 }
